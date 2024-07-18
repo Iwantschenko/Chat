@@ -8,10 +8,9 @@ namespace DAL.DB.DbConfig
     {
         public void Configure(EntityTypeBuilder<Chat> builder)
         {
-            builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id)
-                .HasColumnName("Chat_Id");
+            builder.HasKey(x => x.Chat_ID);
             builder.Property(x => x.Name)
+                .IsUnicode()
                 .IsRequired()
                 .HasColumnName("Chat_Name");
             builder

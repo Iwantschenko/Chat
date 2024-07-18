@@ -12,6 +12,6 @@ namespace Models.Entities
         [Key]
         public string Id { get; set; }
         public string Name { get; set; }
-        public ICollection<Chat> chats { get; set; }
+        public ICollection<Chat>? chats { get; set; }
     }
 }

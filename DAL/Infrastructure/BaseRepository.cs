@@ -11,7 +11,7 @@ namespace DAL.Infrastructure
     public class BaseRepository<Entity> : IRepository<Entity>
         where Entity : class
     {
-        protected readonly ChatDbContext _dbContext;
+        private readonly ChatDbContext _dbContext;
         public BaseRepository(ChatDbContext dbContext)
         {
             _dbContext = dbContext;
@@ -28,29 +28,12 @@ namespace DAL.Infrastructure
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task Delete(Guid ID)
-        {
-            var item = await _dbContext.Set<Entity>().FindAsync(ID);
-            if (item != null)
-            {
-                _dbContext.Set<Entity>().Remove(item);
-            }
-            await _dbContext.SaveChangesAsync();
-        }
-
         public async Task<List<Entity>> GetAll()
         {
             return await _dbContext
                 .Set<Entity>()
                 .AsNoTracking()
                 .ToListAsync();
-        }
-
-        public async Task<Entity> GetByID(Guid ID)
-        {
-            return await _dbContext
-               .Set<Entity>()
-               .FindAsync(ID);
         }
 
         public void RemoveEntity(Entity entity)

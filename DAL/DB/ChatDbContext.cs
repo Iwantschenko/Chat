@@ -17,6 +17,10 @@ namespace DAL.DB
             modelBuilder.ApplyConfiguration(new ChatConfig());
             
             base.OnModelCreating(modelBuilder);
+            if (Database.IsRelational())
+            {
+                // Relational-specific configurations
+            }
         }
     }
 }
